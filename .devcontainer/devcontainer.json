@@ -1,12 +1,16 @@
 {
-    "name": "Python 3",
+    "name": "My Dev Container",
     // "image": "mcr.microsoft.com/devcontainers/python",
-	"build": {
-		// Paths are relative to the devcontainer.json file.
-		"dockerfile": "Dockerfile",
-		"context": "..",
-		"args": {"PYTHON_VERSION": "3.11"}
-	},
+	"dockerComposeFile": "../docker-compose.yml",
+	"workspaceFolder": "/code",
+	"service": "app",
+	"shutdownAction": "stopCompose",
+	// "build": {
+	// 	// Paths are relative to the devcontainer.json file.
+	// 	"dockerfile": "Dockerfile",
+	// 	"context": "..",
+	// 	"args": {"PYTHON_VERSION": "3.10"}
+	// },
     "customizations": {
 		"vscode": {
 			"settings": {}

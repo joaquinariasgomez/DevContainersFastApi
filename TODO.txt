@@ -1,0 +1,2 @@
+- Meter extensión de Python
+- Meter extensión de Pylance
