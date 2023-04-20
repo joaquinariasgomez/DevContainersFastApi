@@ -10,7 +10,6 @@ deps:
 
 .PHONY: run
 run:
-	source .env;
 	$(PYTHON) app/main.py;
 
 .PHONY: db-up

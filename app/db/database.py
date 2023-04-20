@@ -1,8 +1,7 @@
-import os
 import motor.motor_asyncio
 from bson.objectid import ObjectId
 
-client = motor.motor_asyncio.AsyncIOMotorClient(os.environ['DB_URL'])
+client = motor.motor_asyncio.AsyncIOMotorClient('mongodb://localhost')
 
 database = client.users
 
