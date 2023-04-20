@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  db:
+    image: mongo
+    container_name: mongoContainerExample1
+    ports:
+      - 27017:27017
+    volumes:
+      - dbVolumeExample1:/data/db
+
+volumes:
+  dbVolumeExample1:
