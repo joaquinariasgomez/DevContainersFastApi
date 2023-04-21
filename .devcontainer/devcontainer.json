@@ -5,8 +5,9 @@
 		// Paths are relative to the devcontainer.json file.
 		"dockerfile": "Dockerfile",
 		"context": "..",
-		"args": {"PYTHON_VERSION": "3.11"}
+		"args": {"PYTHON_VERSION": "3.10"}
 	},
+	"runArgs": ["--network=host"],
     "customizations": {
 		"vscode": {
 			"settings": {}
