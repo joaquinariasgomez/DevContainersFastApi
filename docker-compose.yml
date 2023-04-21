@@ -14,11 +14,11 @@ services:
 
   db:
     image: mongo
-    container_name: mymongodb
+    container_name: mongocontainerexample2
     ports:
       - 27017:27017
     volumes:
-      - dbvolume:/data/db
+      - dbvolumeexample2:/data/db
 
 volumes:
-  dbvolume:
+  dbvolumeexample2:
