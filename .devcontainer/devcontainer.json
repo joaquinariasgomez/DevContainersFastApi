@@ -1,6 +1,5 @@
 {
     "name": "Python 3",
-    // "image": "mcr.microsoft.com/devcontainers/python",
 	"build": {
 		// Paths are relative to the devcontainer.json file.
 		"dockerfile": "Dockerfile",
@@ -25,8 +24,11 @@
 		}
     },
 	"features": {
-		
-	}
-	// Another way of installing requirements is the postCreateCommand command:
-    // "postCreateCommand": "pip3 install -r requirements.txt"
+		"ghcr.io/guiyomh/features/vim:0": {},
+		"ghcr.io/devcontainers/features/docker-in-docker:1": {
+			"version": "latest",
+			"moby": true
+		}
+	},
+	"postCreateCommand": "pip install -r app/requirements.txt"
 }
