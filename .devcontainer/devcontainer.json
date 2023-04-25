@@ -10,12 +10,15 @@
 	"runArgs": ["--network=host"],
     "customizations": {
 		"vscode": {
-			"settings": {}
-			// "extensions": [  TODO add some cool python extension
-			// 	"streetsidesoftware.code-spell-checker"
-			// ]
+			"settings": {},
+			"extensions": [
+				"tonybaloney.vscode-pets"
+			]
 		}
-    }
+    },
+	"features": {
+		
+	}
 	// Another way of installing requirements is the postCreateCommand command:
     // "postCreateCommand": "pip3 install -r requirements.txt"
 }
