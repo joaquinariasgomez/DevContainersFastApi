@@ -10,8 +10,14 @@
 	"runArgs": ["--network=host"],
     "customizations": {
 		"vscode": {
-			"settings": {},
+			"settings": {
+				"editor.tabSize": 4,
+				"editor.defaultFormatter": "ms-python.black-formatter",
+				"editor.formatOnSave": true
+			},
 			"extensions": [
+				"ms-python.black-formatter",
+				"davidanson.vscode-markdownlint",
 				"tonybaloney.vscode-pets"
 			]
 		}
