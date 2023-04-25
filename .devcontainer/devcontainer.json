@@ -16,6 +16,8 @@
 				"editor.formatOnSave": true
 			},
 			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
 				"ms-python.black-formatter",
 				"davidanson.vscode-markdownlint",
 				"tonybaloney.vscode-pets"
