@@ -1,24 +1,30 @@
 {
-    "name": "My Dev Container",
-    // "image": "mcr.microsoft.com/devcontainers/python",
+    "name": "My Python Service",
 	"dockerComposeFile": "../docker-compose.yml",
 	"workspaceFolder": "/code",
 	"service": "app",
 	"shutdownAction": "stopCompose",
-	// "build": {
-	// 	// Paths are relative to the devcontainer.json file.
-	// 	"dockerfile": "Dockerfile",
-	// 	"context": "..",
-	// 	"args": {"PYTHON_VERSION": "3.10"}
-	// },
     "customizations": {
 		"vscode": {
-			"settings": {}
-			// "extensions": [  TODO add some cool python extension
-			// 	"streetsidesoftware.code-spell-checker"
-			// ]
+			"settings": {
+				"editor.tabSize": 4,
+				"editor.defaultFormatter": "ms-python.black-formatter",
+				"editor.formatOnSave": true
+			},
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-python.black-formatter",
+				"davidanson.vscode-markdownlint",
+				"tonybaloney.vscode-pets"
+			]
 		}
-    }
-	// Another way of installing requirements is the postCreateCommand command:
-    // "postCreateCommand": "pip3 install -r requirements.txt"
+    },
+	"features": {
+		"ghcr.io/guiyomh/features/vim:0": {}
+		// "ghcr.io/devcontainers/features/docker-in-docker:1": {
+		// 	"version": "latest",
+		// 	"moby": true
+		// }
+	}
 }
