@@ -25,6 +25,7 @@
     },
 	"features": {
 		"ghcr.io/guiyomh/features/vim:0": {},
+		// This next feature installs docker inside the docker container, which can be helpful in some cases
 		// "ghcr.io/devcontainers/features/docker-in-docker:1": {
 		// 	"version": "latest",
 		// 	"moby": true
