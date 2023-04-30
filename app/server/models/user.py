@@ -2,44 +2,42 @@ from typing import Optional
 
 from pydantic import BaseModel, EmailStr, Field, constr
 
+
 class UserSchema(BaseModel):
-    name: constr(strict=True) = Field(...)  # ... means ellipsis, aka required field
+    name: str = Field(...)
     email: EmailStr = Field(...)
-    type: bool = Field()
 
     class config:
         schema_extra = {
             "example": {
                 "name": "Joaquín Arias",
                 "email": "joaquin.42.is.the.answer@gmail.com",
-                "type": True
             }
         }
+
 
 class UpdateUserModel(BaseModel):
-    name: Optional[constr(strict=True)]
+    name: Optional[str]
     email: Optional[EmailStr]
-    type: Optional[bool]
+    dice: Optional[int] = Field(None, ge=1, le=6)
 
     class config:
         schema_extra = {
             "example": {
                 "name": "Joaquín Arias",
                 "email": "joaquin.42.is.the.answer@gmail.com",
-                "type": True
+                "dice": 6,
             }
         }
 
-def ResponseModel(data, message):
-    return {
-        "data": [data],
-        "code": 200,
-        "message": message
-    }
+
+def CreatedResponseModel(data, message):
+    return {"data": [data], "code": 201, "message": message}
+
+
+def OKResponseModel(data, message):
+    return {"data": [data], "code": 200, "message": message}
+
 
 def ErrorResponseModel(error, code, message):
-    return {
-        "error": error,
-        "code": code,
-        "message": message
-    }
+    return {"error": error, "code": code, "message": message}
