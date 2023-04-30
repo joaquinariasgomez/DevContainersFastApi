@@ -9,8 +9,9 @@ from db.database import (
     update_user,
 )
 from server.models.user import (
+    CreatedResponseModel,
+    OKResponseModel,
     ErrorResponseModel,
-    ResponseModel,
     UserSchema,
     UpdateUserModel,
 )
@@ -18,59 +19,59 @@ from server.models.user import (
 router = APIRouter()
 
 
-@router.post("/", response_description="Datos del user agregados a la base de datos")
+@router.post("/", response_description="User data added to the database")
 async def add_user_data(user: UserSchema = Body(...)):
     user = jsonable_encoder(user)
     new_user = await add_user(user)
-    return ResponseModel(new_user, "User agregado")
+    return CreatedResponseModel(new_user, "User added")
 
 
-@router.get("/", response_description="Devuelve los usuarios")
+@router.get("/", response_description="All the users data have been retrieved")
 async def get_users():
     users = await retrieve_users()
     if users:
-        return ResponseModel(users, "Se consiguieron los datos de los usuarios")
-    return ResponseModel(users, "No hay usuarios en la base de datos")
+        return OKResponseModel(users, "All users data retrieved OK")
+    return OKResponseModel(users, "There are no users in the database")
 
 
 @router.get(
     "/{id}",
-    response_description="Devuelve la información de un usuario, a través de su id",
+    response_description="It returns the information from an user, through its id",
 )
 async def get_user(id):
     user = await retrieve_user(id)
     if user:
-        return ResponseModel(user, "Se consiguieron los datos del usuario")
-    return ResponseModel(
-        user, f"No hay usuarios en la base de datos para el usuario con id {id}"
-    )
+        return OKResponseModel(user, "User data retrieved OK")
+    return OKResponseModel(user, f"There are no users in the database with id {id}")
 
 
-@router.put("/{id}", response_description="Se actualiza la información de un usuario")
+@router.put(
+    "/{id}",
+    response_description="User with given id's information is updated, including dice number (cheating here is allowed :P)",
+)
 async def update_user_data(id: str, req: UpdateUserModel = Body(...)):
     req = {k: v for k, v in req.dict().items() if v is not None}
-    print(f"Request es como sigue: {req}")
     updated_user = await update_user(id, req)
     if updated_user:
-        return ResponseModel(
-            updated_user, f"User con id {id} actualizado correctamente"
+        return OKResponseModel(
+            updated_user, f"User with id {id} has been correclty updated"
         )
     return ErrorResponseModel(
-        f"Ocurrió un error actualizando el usuario {id}",
+        f"There was an error updating user with id {id}",
         404,
-        f"No se encontró el usuario {id}",
+        f"We didn't find the user with id {id}",
     )
 
 
-@router.delete("/{id}", response_description="Se elimina la información de un usuario")
+@router.delete(
+    "/{id}", response_description="The user information is deleted from the database"
+)
 async def delete_user_data(id: str):
     deleted_user = await delete_user(id)
     if deleted_user:
-        return ResponseModel(
-            deleted_user, f"Usuario con id {id} borrado satisfactoriamente"
-        )
+        return OKResponseModel(deleted_user, f"User with id {id} correctly deleted")
     return ErrorResponseModel(
-        f"Ocurrió un error borrando el usuario {id}",
+        f"There was an error deleting user with id {id}",
         404,
-        f"No se encontró el usuario {id}",
+        f"We didn't find the user with id {id}",
     )

@@ -1,4 +1,5 @@
 import motor.motor_asyncio
+import random
 from bson.objectid import ObjectId
 
 client = motor.motor_asyncio.AsyncIOMotorClient("mongodb://localhost")
@@ -15,11 +16,22 @@ def user_to_dict(user) -> dict:
         "id": str(user["_id"]),
         "name": user["name"],
         "email": user["email"],
-        "type": user["type"],
+        "dice": user["dice"],
     }
 
 
 # Database operations
+
+
+async def add_user(user_data: str) -> dict:
+    generated_dice = random.randint(1, 6)
+    # Introduce this generated dice into user_data
+    user_data["dice"] = generated_dice
+
+    user = await user_collection.insert_one(user_data)
+
+    stored_user = await user_collection.find_one({"_id": user.inserted_id})
+    return user_to_dict(stored_user)
 
 
 async def retrieve_users():
@@ -27,12 +39,6 @@ async def retrieve_users():
     async for user in user_collection.find():
         users.append(user_to_dict(user))
     return users
-
-
-async def add_user(user_data: str) -> dict:
-    user = await user_collection.insert_one(user_data)
-    stored_user = await user_collection.find_one({"_id": user.inserted_id})
-    return user_to_dict(stored_user)
 
 
 async def retrieve_user(id: str) -> dict:

@@ -25,10 +25,10 @@
     },
 	"features": {
 		"ghcr.io/guiyomh/features/vim:0": {},
-		"ghcr.io/devcontainers/features/docker-in-docker:1": {
-			"version": "latest",
-			"moby": true
-		}
+		// "ghcr.io/devcontainers/features/docker-in-docker:1": {
+		// 	"version": "latest",
+		// 	"moby": true
+		// }
 	},
 	"postCreateCommand": "pip install -r app/requirements.txt"
 }
