@@ -15,7 +15,7 @@ The database, however, is deployed inside a Docker container, using a docker-com
 
 ## What does the app do?
 
-I created a simple CRUD
+# TODO: poner gráfico de la app aqui
 
 ## Deploying the app, locally
 
