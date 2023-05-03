@@ -15,7 +15,15 @@ The database, however, is deployed inside a Docker container, using a docker-com
 
 ## What does the app do?
 
-# TODO: poner gráfico de la app aqui
+The application that I have developed for the demo is a simple **CRUD** in which three components are involved: the client, the server and the database.
+
+For the server, we are using [FastAPI](https://fastapi.tiangolo.com/), a high performance framework for Python; for the database, we are using [MongoDB](https://www.mongodb.com).
+
+The objective of the app is to save users together with a dice number for an online card game. User data, such as name and e-mail, will be saved, along with a dice that is assigned randomly each time we create a user.
+
+The sequence diagram of the *Create User* operation looks like this:
+
+![Creación de un Usuario](images/Sequence-diagram-app.drawio.png)
 
 ## Deploying the app, locally
 
