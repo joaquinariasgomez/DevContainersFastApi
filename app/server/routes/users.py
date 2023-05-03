@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
+import random
 
 from db.database import (
     add_user,
@@ -20,8 +21,13 @@ router = APIRouter()
 
 
 @router.post("/", response_description="User data added to the database")
-async def add_user_data(user: UserSchema = Body(...)):
+async def create_user(user: UserSchema = Body(...)):
     user = jsonable_encoder(user)
+
+    # Create a random dice number for the user
+    generated_dice = random.randint(1, 6)
+    user["dice"] = generated_dice
+
     new_user = await add_user(user)
     return CreatedResponseModel(new_user, "User added")
 
@@ -49,7 +55,7 @@ async def get_user(id):
     "/{id}",
     response_description="User with given id's information is updated, including dice number (cheating here is allowed :P)",
 )
-async def update_user_data(id: str, req: UpdateUserModel = Body(...)):
+async def update_user(id: str, req: UpdateUserModel = Body(...)):
     req = {k: v for k, v in req.dict().items() if v is not None}
     updated_user = await update_user(id, req)
     if updated_user:
@@ -66,7 +72,7 @@ async def update_user_data(id: str, req: UpdateUserModel = Body(...)):
 @router.delete(
     "/{id}", response_description="The user information is deleted from the database"
 )
-async def delete_user_data(id: str):
+async def delete_user(id: str):
     deleted_user = await delete_user(id)
     if deleted_user:
         return OKResponseModel(deleted_user, f"User with id {id} correctly deleted")

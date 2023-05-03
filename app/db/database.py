@@ -1,5 +1,4 @@
 import os
-import random
 import motor.motor_asyncio
 from bson.objectid import ObjectId
 
@@ -25,10 +24,6 @@ def user_to_dict(user) -> dict:
 
 
 async def add_user(user_data: str) -> dict:
-    generated_dice = random.randint(1, 6)
-    # Introduce this generated dice into user_data
-    user_data["dice"] = generated_dice
-
     user = await user_collection.insert_one(user_data)
 
     stored_user = await user_collection.find_one({"_id": user.inserted_id})
