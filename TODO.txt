@@ -1,3 +1,0 @@
-- Cambiar modelo de user, de forma que se añada a la base de datos un campo
-con "dice": "int" que contenga un enntero aleatorio en momento de creación del user
-entre el 1 y el 6.
