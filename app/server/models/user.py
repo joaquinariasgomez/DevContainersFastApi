@@ -3,7 +3,7 @@ from typing import Optional
 from pydantic import BaseModel, EmailStr, Field
 
 
-class UserSchema(BaseModel):
+class UserModel(BaseModel):
     name: str = Field(...)
     email: EmailStr = Field(...)
 

@@ -42,20 +42,20 @@ async def retrieve_user(id: str) -> dict:
         return user_to_dict(user)
 
 
-async def update_user(id: str, data: dict) -> bool:
-    if len(data) < 1:
+async def db_update_user(id: str, new_user_data: dict) -> bool:
+    if len(new_user_data) < 1:
         return False
     user = await user_collection.find_one({"_id": ObjectId(id)})
     if user:
         updated_user = await user_collection.update_one(
-            {"_id": ObjectId(id)}, {"$set": data}
+            {"_id": ObjectId(id)}, {"$set": new_user_data}
         )
         if updated_user:
             return True
     return False
 
 
-async def delete_user(id: str) -> bool:
+async def db_delete_user(id: str) -> bool:
     user = await user_collection.find_one({"_id": ObjectId(id)})
     if user:
         await user_collection.delete_one({"_id": ObjectId(id)})
