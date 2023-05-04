@@ -1,5 +1,4 @@
 PYTHON := python
-SHELL := /bin/bash
 
 .PHONY: all
 all: deps db-up run
