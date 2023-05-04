@@ -1,5 +1,5 @@
 {
-    "name": "Python 3",
+    "name": "My Python Service",
 	"build": {
 		// Paths are relative to the devcontainer.json file.
 		"dockerfile": "Dockerfile",
