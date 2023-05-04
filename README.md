@@ -38,4 +38,4 @@ In order to get this app up and running, we can just open the environment inside
 
 To do this, use the Dev Container extension shortcut: ```Open Folder in Container```. If you have opened this workspace before, you can click on the extension ```Reopen in Container```, which will remember your container.
 
-Once inside the container, the dependencies must be installed due to the ```RUN pip install -r requirements.txt``` command inside the main service Dockerfile. Here, we don't need a Python virtual environment, since we are currently in one!
+Once inside the container, the dependencies will already be installed due to the ```RUN pip install -r requirements.txt``` command inside the main service Dockerfile. Also, the Python service will be running as well. Here, we don't need a Python virtual environment, since we are currently in one!
